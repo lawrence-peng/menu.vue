@@ -9,18 +9,17 @@
 </head>
 <body>
 <div class="container" id="app">
-    <menu-view v-show="currentView==='menuView'" v-ref:menuContainer :cart-data="cartData" :show-cartbox="showCartbox"
+    <menu-view v-if="currentView==='menuView'" v-ref:menuContainer :cart-data="cartData" :show-cartbox="showCartbox"
                :category-menu-list="categoryMenuList" :shop-name="shopName"></menu-view>
-    <menu-detail v-show="currentView==='detailView'" v-ref:menuDetail :cart-data="cartData"></menu-detail>
-    <user-cart v-ref:cart v-show="showCartbox" :cart-data="cartData"></user-cart>
+    <menu-detail v-if="currentView==='detailView'" v-ref:menuDetail :cart-data="cartData"></menu-detail>
+    <user-cart v-ref:cart v-if="showCartbox" :cart-data="cartData"></user-cart>
     <menu-bottom v-ref:bottom :show-cart="showCartbox" :cart-data="cartData"></menu-bottom>
-    <menu-search v-ref:search v-show='showSearchbox' :foods="foods"></menu-search>
+    <menu-search v-ref:search v-if='showSearchbox' :foods="foods"></menu-search>
 </div>
 
 
 <script src="js/vue.min.js"></script>
 <script src="js/zepto.min.js"></script>
-<script src="js/gfx.js"></script>
 
 <!-- build:js js/menu.combined.js -->
 <script src="js/menu/header.js"></script>

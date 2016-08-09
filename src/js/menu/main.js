@@ -243,12 +243,12 @@
 
     var menu = storage.getStorage(menuKey, 'local');
     if (menu && menu.menuVersion === currentMenuVersion) {
+        console.time('renader ui from storage')
         app.createComponent(menu);
-        $('#app').gfxPopIn({
-            scale: ".8"
-        });
+        console.timeEnd('renader ui from storage')
         return;
     }
+    console.time('renader ui from remote')
     $.getJSON(rootUrl + '/data/menu.json', function (remoteData) {
         if (remoteData.code == 1) {
             var records = remoteData.data;
@@ -267,6 +267,7 @@
             });
 
             app.createComponent(menu);
+            console.timeEnd('renader ui from remote')
         }
         else {
             console.error('getShopDish', remoteData.message);
